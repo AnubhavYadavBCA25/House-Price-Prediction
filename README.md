@@ -10,6 +10,7 @@
 - Source of Dataset: https://www.kaggle.com/datasets/harlfoxem/housesalesprediction
 - Context: The "House Sales in King County, USA" dataset provides comprehensive information on home sales in King County, which includes Seattle, from May 2014 to May 2015. The dataset consists of 21,613 records, each containing various features that describe the properties, such as the number of bedrooms and bathrooms, square footage, lot size, year built, and geographic location. This dataset serves as a valuable resource for building predictive models to estimate house prices based on these features, offering insights into the factors that influence real estate values in the region.
 - Key features include:
+    - Date: Represents the date when the house sale was recorded.
     - Price: The sale price of the house.
     - Bedrooms: Number of bedrooms.
     - Bathrooms: Number of bathrooms.

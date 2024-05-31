@@ -15,9 +15,3 @@ class CustomException(Exception):
     
     def __str__(self):
         return self.error_message
-    
-if __name__ == "__main__":
-    try:
-        a=1/0
-    except CustomException as e:
-        raise CustomException("Error occured",sys.exc_info())
