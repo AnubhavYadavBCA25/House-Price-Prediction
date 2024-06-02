@@ -46,9 +46,9 @@ The goal of this project is to develop a machine learning model that accurately 
 - Streamlit (Web Application)
 - Plotly (Interactive Visualization)
 - XGBoost (ML Algorithm)
-- OS
-- Sys
-- Dill
+- OS (Directory Work)
+- Joblib (Pickle file making and loading)
+
 ## Step-By-Step Project Overview
 
 ## Web Application (Streamlit App)
