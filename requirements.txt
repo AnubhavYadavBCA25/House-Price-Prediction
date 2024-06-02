@@ -5,4 +5,5 @@ matplotlib
 scikit-learn
 xgboost
 joblib
+streamlit==0.82.0
 -e .
