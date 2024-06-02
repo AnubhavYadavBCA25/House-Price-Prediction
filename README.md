@@ -33,7 +33,22 @@
 The goal of this project is to develop a machine learning model that accurately predicts house prices in King County, USA, based on various property features. By analyzing and leveraging the "House Sales in King County" dataset, the project aims to identify key factors influencing home values and provide a reliable tool for estimating market prices.
 
 ## Installation (IDE's, Libraries and etc)
-
+1. IDE:
+- VSCode : Data Analysis,Pipeline Building, Transformation, Data Ingestion, ML Modelling and Web App. Development (Prefered)
+- PyCharm : Data Analysis,Pipeline Building, Transformation, Data Ingestion, ML Modelling and Web App. Development (Prefered)
+- Jupyter Notebook : Analysis and ML Modelling.
+- Google Colab : Analysis and ML Modelling.
+- Python Virtual Enviornment v3.8 (Prefered)
+2. Python Libraries:
+- Pandas (Data Manipulation)
+- Matplotlib and Seaborn (Data Visualization)
+- Scikit-learn (Machine Learning Model)
+- Streamlit (Web Application)
+- Plotly (Interactive Visualization)
+- XGBoost (ML Algorithm)
+- OS
+- Sys
+- Dill
 ## Step-By-Step Project Overview
 
 ## Web Application (Streamlit App)
