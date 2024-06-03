@@ -4,6 +4,7 @@ st.set_page_config(
     page_title="Home",
     page_icon="🏠",
 )
+st.sidebar.success("Select a demo above.")
 # Project introduction page of our house prediction project web app
 
 def main():
