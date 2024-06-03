@@ -1,4 +1,4 @@
-# House Price Prediction Project
+# 🏠 House Price Prediction Project
 
 ## General Structure of this Project
 - Title: House Price Prediction
