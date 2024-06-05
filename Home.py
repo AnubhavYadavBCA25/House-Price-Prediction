@@ -60,7 +60,7 @@ def main():
     st.header('Explore Web App 🌐')
     st.write('Click on the sidebar to explore the different pages of the web app.')
     st.write('Or click on the link below to go to the home page of the web app.')
-    st.write('[Predict House Price]()')
+    st.write('[Predict House Price](https://house-price-prediction-2024.streamlit.app/Prediction)')
     st.divider()
 
     st.header('About Me👨‍💻')
