@@ -285,7 +285,7 @@ def main():
     <div style="text-align:center;">
         <p>Made with ❤️ by Anubhav Yadav</p>
         <p>Follow me on 
-            <a href="https://linkedin.com/in/anubhav-yadav-srm" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a> | 
+            <a href="https://linkedin.com/in/anubhav-yadav-data-science" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a> | 
             <a href="https://github.com/AnubhavYadavBCA25" target="_blank"><i class="fab fa-github"></i>GitHub</a>
         </p>
     </div>

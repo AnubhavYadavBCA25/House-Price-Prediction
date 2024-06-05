@@ -72,7 +72,7 @@ def main():
 
     GitHub: AnubhavYadavBCA25 (https://github.com/AnubhavYadavBCA25)
              
-    LinkedIn: Anubhav Yadav (https://www.linkedin.com/in/anubhav-yadav-srm/)
+    LinkedIn: Anubhav Yadav (https://www.linkedin.com/in/anubhav-yadav-data-science/)
     """)
 
 if __name__ == '__main__':

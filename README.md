@@ -51,8 +51,34 @@ The goal of this project is to develop a machine learning model that accurately 
 
 ## Step-By-Step Project Overview
 
-## Web Application (Streamlit App)
+1. **Data Acquisition**: Download the "House Sales in King County" dataset from the provided source (https://www.kaggle.com/datasets/harlfoxem/housesalesprediction) and save it in a local directory.
+
+2. **Data Exploration**: Load the dataset into a pandas DataFrame and perform initial exploratory data analysis (EDA) to gain insights into the data. This includes checking for missing values, data types, statistical summaries, and visualizations.
+
+3. **Data Preprocessing**: Clean the data by handling missing values, outliers, and any inconsistencies in the dataset. This may involve imputing missing values, removing outliers, and transforming variables if necessary.
+
+4. **Feature Engineering**: Create new features or transform existing features to enhance the predictive power of the model. This may include feature scaling, one-hot encoding categorical variables, and creating interaction or polynomial features.
+
+5. **Feature Selection**: Select the most relevant features that have the strongest correlation with the target variable (house prices). This can be done using statistical tests, feature importance techniques, or domain knowledge.
+
+6. **Model Development**: Split the dataset into training and testing sets. Train various machine learning models, such as linear regression, decision trees, random forests, or XGBoost, using the training data. Evaluate the performance of each model using appropriate evaluation metrics.
+
+7. **Model Evaluation**: Compare the performance of different models based on evaluation metrics such as mean squared error (MSE), root mean squared error (RMSE), and R-squared. Select the best-performing model for further analysis.
+
+8. **Model Fine-tuning**: Fine-tune the selected model by optimizing hyperparameters using techniques like grid search or random search. This helps to improve the model's performance and generalization ability. (Depend on Model Performance)
+
+9. **Model Validation**: Validate the final model using the testing set to assess its performance on unseen data. Calculate evaluation metrics and analyze the model's predictions.
+
+10. **Model Deployment**: Build a web application using Streamlit to create an interactive interface for users to input property features and get predicted house prices. Deploy the application on a web server or cloud platform for accessibility.
+
+11. **Documentation and Reporting**: Document the entire project, including the steps taken, methodologies used, and results obtained. Create a comprehensive report summarizing the findings, insights, and recommendations.
+
+By following these step-by-step procedures, you can successfully develop a machine learning model for house price prediction in King County, USA.
+
+## Web Application (Streamlit)
+
+Web App Link: 
 
 ## Contact Information
-- LinkedIn: https://www.linkedin.com/in/anubhav-yadav-srm/
+- LinkedIn: https://www.linkedin.com/in/anubhav-yadav-data-science/
 - Email: anubhavyadav77ff@gmail.com
