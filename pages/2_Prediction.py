@@ -3,8 +3,8 @@ import joblib
 import pandas as pd
 import numpy as np
 
-import mysql.connector
-from mysql.connector import Error
+# import mysql.connector
+# from mysql.connector import Error
 
 st.set_page_config(
     page_title="Prediction",
@@ -52,66 +52,73 @@ def predict_price(model, scaler, data, input_data):
         st.error(f"Error predicting price: {e}")
         return None
 
+# ============================================================================================================================= #
+
 # Function to create a connection to the database
-def create_connection():
-    try:
-        connection = mysql.connector.connect(
-            host='localhost',
-            port='3306',
-            user='root',
-            password='Anubhav@2023?',  # Replace with your MySQL root password
-            database='house_price'
-        )
-        if connection.is_connected():
-            st.success("Successfully connected to the database")
-        return connection
-    except Error as e:
-        st.write(f"Error: '{e}'")
-        return None
+
+# def create_connection():
+#     try:
+#         connection = mysql.connector.connect(
+#             host='your_host',
+#             port='your_port',
+#             user='your_root',
+#             password='your_password',  # Replace with your MySQL root password
+#             database='your_database'
+#         )
+#         if connection.is_connected():
+#             st.success("Successfully connected to the database")
+#         return connection
+#     except Error as e:
+#         st.write(f"Error: '{e}'")
+#         return None
     
 # Create house_price_prediction table in the database
-def create_table(connection):
-    try:
-        cursor = connection.cursor()
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS house_price_prediction (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                bedrooms INT,
-                bathrooms FLOAT,
-                sqft_living INT,
-                sqft_lot INT,
-                floors FLOAT,
-                waterfront INT,
-                view INT,
-                `condition` INT,
-                grade INT,
-                sqft_above INT,
-                sqft_basement INT,
-                yr_built INT,
-                yr_renovated INT,
-                lat FLOAT,
-                `long` FLOAT,
-                sqft_living15 INT,
-                sqft_lot15 INT,
-                year INT,
-                month INT,
-                house_age INT,
-                predicted_price FLOAT
-            )
-        ''')
-    except Error as e:
-        st.write(f"Error: '{e}'")
+
+# def create_table(connection):
+#     try:
+#         cursor = connection.cursor()
+#         cursor.execute('''
+#             CREATE TABLE IF NOT EXISTS house_price_prediction (
+#                 id INT AUTO_INCREMENT PRIMARY KEY,
+#                 bedrooms INT,
+#                 bathrooms FLOAT,
+#                 sqft_living INT,
+#                 sqft_lot INT,
+#                 floors FLOAT,
+#                 waterfront INT,
+#                 view INT,
+#                 `condition` INT,
+#                 grade INT,
+#                 sqft_above INT,
+#                 sqft_basement INT,
+#                 yr_built INT,
+#                 yr_renovated INT,
+#                 lat FLOAT,
+#                 `long` FLOAT,
+#                 sqft_living15 INT,
+#                 sqft_lot15 INT,
+#                 year INT,
+#                 month INT,
+#                 house_age INT,
+#                 predicted_price FLOAT
+#             )
+#         ''')
+#     except Error as e:
+#         st.write(f"Error: '{e}'")
 
 # Function to insert input data into the database
-def insert_data(connection, bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above, 
-                sqft_basement, yr_built, yr_renovated, lat, long, sqft_living15, sqft_lot15, year, month, house_age, predicted_price):
-    try:
-        cursor = connection.cursor()
-        predict_price = np.round(predicted_price[0], 2)
-        cursor.execute(f"INSERT INTO house_price_prediction (bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, `condition`, grade, sqft_above, sqft_basement, yr_built, yr_renovated, lat, `long`, sqft_living15, sqft_lot15, year, month, house_age, predicted_price) VALUES ({bedrooms}, {bathrooms}, {sqft_living}, {sqft_lot}, {floors}, {waterfront}, {view}, {condition}, {grade}, {sqft_above}, {sqft_basement}, {yr_built}, {yr_renovated}, {lat}, {long}, {sqft_living15}, {sqft_lot15}, {year}, {month}, {house_age}, {predict_price})")
-        connection.commit()
-    except Error as e:
-        st.write(f"Error: '{e}'")
+
+# def insert_data(connection, bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above, 
+#                 sqft_basement, yr_built, yr_renovated, lat, long, sqft_living15, sqft_lot15, year, month, house_age, predicted_price):
+#     try:
+#         cursor = connection.cursor()
+#         predict_price = np.round(predicted_price[0], 2)
+#         cursor.execute(f"INSERT INTO house_price_prediction (bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, `condition`, grade, sqft_above, sqft_basement, yr_built, yr_renovated, lat, `long`, sqft_living15, sqft_lot15, year, month, house_age, predicted_price) VALUES ({bedrooms}, {bathrooms}, {sqft_living}, {sqft_lot}, {floors}, {waterfront}, {view}, {condition}, {grade}, {sqft_above}, {sqft_basement}, {yr_built}, {yr_renovated}, {lat}, {long}, {sqft_living15}, {sqft_lot15}, {year}, {month}, {house_age}, {predict_price})")
+#         connection.commit()
+#     except Error as e:
+#         st.write(f"Error: '{e}'")
+
+# ==============================================================================================================================#
 
 def main():
     st.title('🔮 Price Prediction')
@@ -251,16 +258,16 @@ def main():
             st.error('Error predicting price')
 
     # # Connect to the database and insert the input and prediction
-        connection = create_connection()
-        if connection:
-            insert_data(connection, bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above,
-                        sqft_basement, yr_built, yr_renovated, lat, long, sqft_living_15, sqft_lot_15, yr_sold, month_sold, house_age, predicted_price)
-            connection.close()
-            st.success("Data inserted successfully in database.")
-        else:
-            st.error("Error connecting to the database.")
+    #     connection = create_connection()
+    #     if connection:
+    #         insert_data(connection, bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above,
+    #                     sqft_basement, yr_built, yr_renovated, lat, long, sqft_living_15, sqft_lot_15, yr_sold, month_sold, house_age, predicted_price)
+    #         connection.close()
+    #         st.success("Data inserted successfully in database.")
+    #     else:
+    #         st.error("Error connecting to the database.")
 
-    st.divider()
+    # st.divider()
 
     # Note
     st.subheader('⚠️Please Note:')
