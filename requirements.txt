@@ -7,4 +7,5 @@ xgboost
 joblib
 streamlit==1.35.0
 plotly
+mysql-connector-python
 -e .

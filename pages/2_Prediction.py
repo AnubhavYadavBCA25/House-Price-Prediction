@@ -3,6 +3,9 @@ import joblib
 import pandas as pd
 import numpy as np
 
+import mysql.connector
+from mysql.connector import Error
+
 st.set_page_config(
     page_title="Prediction",
     page_icon="🔮",
@@ -48,6 +51,67 @@ def predict_price(model, scaler, data, input_data):
     except Exception as e:
         st.error(f"Error predicting price: {e}")
         return None
+
+# Function to create a connection to the database
+def create_connection():
+    try:
+        connection = mysql.connector.connect(
+            host='localhost',
+            port='3306',
+            user='root',
+            password='Anubhav@2023?',  # Replace with your MySQL root password
+            database='house_price'
+        )
+        if connection.is_connected():
+            st.success("Successfully connected to the database")
+        return connection
+    except Error as e:
+        st.write(f"Error: '{e}'")
+        return None
+    
+# Create house_price_prediction table in the database
+def create_table(connection):
+    try:
+        cursor = connection.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS house_price_prediction (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                bedrooms INT,
+                bathrooms FLOAT,
+                sqft_living INT,
+                sqft_lot INT,
+                floors FLOAT,
+                waterfront INT,
+                view INT,
+                `condition` INT,
+                grade INT,
+                sqft_above INT,
+                sqft_basement INT,
+                yr_built INT,
+                yr_renovated INT,
+                lat FLOAT,
+                `long` FLOAT,
+                sqft_living15 INT,
+                sqft_lot15 INT,
+                year INT,
+                month INT,
+                house_age INT,
+                predicted_price FLOAT
+            )
+        ''')
+    except Error as e:
+        st.write(f"Error: '{e}'")
+
+# Function to insert input data into the database
+def insert_data(connection, bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above, 
+                sqft_basement, yr_built, yr_renovated, lat, long, sqft_living15, sqft_lot15, year, month, house_age, predicted_price):
+    try:
+        cursor = connection.cursor()
+        predict_price = np.round(predicted_price[0], 2)
+        cursor.execute(f"INSERT INTO house_price_prediction (bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, `condition`, grade, sqft_above, sqft_basement, yr_built, yr_renovated, lat, `long`, sqft_living15, sqft_lot15, year, month, house_age, predicted_price) VALUES ({bedrooms}, {bathrooms}, {sqft_living}, {sqft_lot}, {floors}, {waterfront}, {view}, {condition}, {grade}, {sqft_above}, {sqft_basement}, {yr_built}, {yr_renovated}, {lat}, {long}, {sqft_living15}, {sqft_lot15}, {year}, {month}, {house_age}, {predict_price})")
+        connection.commit()
+    except Error as e:
+        st.write(f"Error: '{e}'")
 
 def main():
     st.title('🔮 Price Prediction')
@@ -150,7 +214,6 @@ def main():
     age = yr_sold - yr_built
     st.write(f'The age of the house when sold is {age} years. Enter it below.')
     house_age = st.number_input('House Age', min_value=0, max_value=115, value=age)
-    st.divider()
 
     # Create a dictionary of input data
     input_data = {
@@ -187,7 +250,48 @@ def main():
         else:
             st.error('Error predicting price')
 
-    st.sidebar.info('Select a demo above.')
+    # # Connect to the database and insert the input and prediction
+        connection = create_connection()
+        if connection:
+            insert_data(connection, bedrooms, bathrooms, sqft_living, sqft_lot, floors, waterfront, view, condition, grade, sqft_above,
+                        sqft_basement, yr_built, yr_renovated, lat, long, sqft_living_15, sqft_lot_15, yr_sold, month_sold, house_age, predicted_price)
+            connection.close()
+            st.success("Data inserted successfully in database.")
+        else:
+            st.error("Error connecting to the database.")
+
+    st.divider()
+
+    # Note
+    st.subheader('⚠️Please Note:')
+    st.write('''
+            - The predicted price is an estimate and may vary from the actual price.
+            - The model is trained on the King County House Sales dataset and may not be accurate for other datasets.
+            - The prediction is based on the features you provide. Please ensure the input data is accurate.
+            - The predicted price is in USD ($).
+            - The prediction is for educational purposes only.
+            - The prediction is not financial advice.
+            - The prediction is not a substitute for professional advice.
+            - The prediction is not guaranteed.
+            - The prediction is not a warranty or guarantee of the future price.
+            - For any queries or issues, please contact the developer.
+            ''')
+
+    # Footer
+    st.markdown("---")
+    st.markdown(
+    """
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <div style="text-align:center;">
+        <p>Made with ❤️ by Anubhav Yadav</p>
+        <p>Follow me on 
+            <a href="https://linkedin.com/in/anubhav-yadav-srm" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a> | 
+            <a href="https://github.com/AnubhavYadavBCA25" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+        </p>
+    </div>
+    """, unsafe_allow_html=True
+)
+    
 
 if __name__ == '__main__':
     main()

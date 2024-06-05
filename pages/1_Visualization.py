@@ -48,7 +48,7 @@ def main():
     st.header('Map of Houses 🗺️')
     st.write('The map below shows the location of the houses in the dataset.')
     fig = px.scatter_mapbox(df, lat='lat', lon='long', color='price', size='price', hover_name='price', zoom=9, title='Map of King County Houses')
-    fig.update_layout(mapbox_style='open-street-map', autosize=False, width=800, height=800)
+    fig.update_layout(mapbox_style='open-street-map', autosize=False, width=800, height=700)
     st.plotly_chart(fig)
     st.write('Conclusions: The houses are located in the King County area of Washington. The price of the houses is represented by the color and size of the markers.')
     st.divider()
