@@ -256,6 +256,9 @@ def main():
             st.success(f'The predicted price of the house is ${np.round(predicted_price[0], 2)}')
         else:
             st.error('Error predicting price')
+    st.divider()
+
+# ======================================================================================================================== #
 
     # # Connect to the database and insert the input and prediction
     #     connection = create_connection()
@@ -268,6 +271,8 @@ def main():
     #         st.error("Error connecting to the database.")
 
     # st.divider()
+
+# ======================================================================================================================== #
 
     # Note
     st.subheader('⚠️Please Note:')
